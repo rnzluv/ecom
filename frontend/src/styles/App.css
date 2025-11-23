@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ============================
+   AUREVRA ADMIN THEME COLORS
+   ============================ */
+:root {
+    --bg: #f6f1e7;                 /* Main background */
+    --panel: #fffaf2;              /* Cards / containers */
+    --border: #d9cbb6;             /* Soft beige border */
+    --text: #3e2e18;               /* Dark warm brown */
+    --text-light: #5a4525;         /* Slightly lighter brown */
+
+    --gold: #c7a34b;               /* Aurevra gold */
+    --gold-dark: #b89336;          /* Hover gold */
+
+    --shadow: rgba(0,0,0,0.06); 
+}
+
+/* ============================
+   GLOBAL BODY
+   ============================ */
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* Disable blur + background image layers */
+body::before,
+body::after {
+    content: none !important;
+}
+
+/* ============================
+   CONTAINER
+   ============================ */
+.app-container {
+    padding: 25px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* ============================
+   NAVBAR
+   ============================ */
+.navbar {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    box-shadow: 0 3px 10px var(--shadow);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px;
+    margin: 25px;
+}
+
+.navbar a {
+    color: var(--text);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    transition: .2s;
+}
+
+.navbar a:hover {
+    color: var(--gold);
+}
+
+/* Navbar button */
+.navbar button {
+    background: var(--gold);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.navbar button:hover {
+    background: var(--gold-dark);
+    transform: translateY(-2px);
+}
+
+/* ============================
+   UTILITY & THEME UPDATES
+   Modern minimal UI tokens, buttons, cards, grids
+   ============================ */
+
+:root {
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --gap: 18px;
+    --card-shadow: 0 8px 24px rgba(30,22,10,0.06);
+}
+
+/* Smooth transitions for interactive elements */
+* { transition: background-color .22s cubic-bezier(.2,.8,.2,1), color .18s ease, transform .12s ease; }
+
+/* Buttons */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 16px; border-radius:var(--radius-sm); font-weight:600; cursor:pointer; border:none; }
+.btn-primary { background: linear-gradient(180deg,var(--gold),var(--gold-dark)); color: #fff; box-shadow: 0 6px 18px rgba(183,138,66,0.12); }
+.btn-primary:hover { transform: translateY(-3px); }
+.btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-link { background: transparent; color: var(--gold); padding:6px 8px; }
+
+/* Cards */
+.card { background: var(--panel); border-radius: var(--radius-md); padding: 16px; box-shadow: var(--card-shadow); border: 1px solid rgba(0,0,0,0.03); }
+.card .card-media { width:100%; height:220px; overflow:hidden; border-radius: calc(var(--radius-md) - 4px); display:block; }
+.card .card-media img { width:100%; height:100%; object-fit:cover; transition: transform .45s cubic-bezier(.2,.9,.3,1); }
+.card:hover .card-media img { transform: scale(1.03); }
+.card .card-body { padding-top:12px; }
+.card h4{ margin:0 0 8px 0; font-size:1.05rem; }
+.card p.price{ margin:0; font-weight:700; color:var(--text-light); }
+
+/* Product grid */
+.products-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--gap); }
+
+/* Responsive containers */
+.hero { display:grid; grid-template-columns: 1fr 420px; gap:32px; align-items:center; padding:40px 0; }
+@media (max-width: 992px) { .hero { grid-template-columns: 1fr; } }
+
+/* Footer small helpers */
+.footer { padding: 40px 0; }
+
+/* Fluid utilities */
+.center { display:flex; justify-content:center; align-items:center; }
+.muted { color: rgba(62,46,24,0.6); }
+
+/* Accessibility: focus outlines */
+:focus { outline: 3px solid rgba(199,163,75,0.18); outline-offset: 2px; }
+

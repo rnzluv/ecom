@@ -1,0 +1,2 @@
+.skeleton{background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.12), rgba(255,255,255,0.06));animation:skele 1.2s linear infinite;background-size:200% 100%}
+@keyframes skele{0%{background-position:200% 0}100%{background-position:-200% 0}}

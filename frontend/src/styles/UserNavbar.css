@@ -1,0 +1,410 @@
+/* ===== USER NAVBAR ===== */
+.user-navbar {
+  width: 100%;
+  padding: 15px 40px;
+  background-color: #fcebcd;
+  border-bottom: 3px solid #BC9E54;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  transition: all 0.3s ease, padding 0.3s ease;
+}
+
+/* ===== LEFT SIDE - LOGO & BRAND ===== */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #433719;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+.brand span {
+  font-family: 'Georgia', serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  color: #D4AF37;
+  white-space: nowrap;
+}
+
+/* ===== RIGHT SIDE - NAVIGATION & ICONS ===== */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+  color: #433719;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: #BC9E54;
+}
+
+.nav-link.active {
+  color: #D4AF37;
+}
+
+/* ===== CART ICON ===== */
+.cart-icon {
+  position: relative;
+  color: #433719;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.cart-icon:hover {
+  color: #BC9E54;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: #D4AF37;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== PROFILE DROPDOWN ===== */
+.dropdown {
+  position: relative;
+}
+
+.profile-icon {
+  font-size: 28px;
+  color: #433719;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.profile-icon:hover {
+  color: #BC9E54;
+}
+
+.dropdown-menu {
+  background-color: #fff;
+  border: 1px solid #d1b97e;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+  color: #433719;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #fcebcd;
+  color: #BC9E54;
+}
+
+/* ===== DARK MODE TOGGLE ===== */
+.dark-toggle {
+  cursor: pointer;
+  font-size: 20px;
+  color: #433719;
+  transition: color 0.3s ease;
+  padding: 5px;
+}
+
+.dark-toggle:hover {
+  color: #BC9E54;
+}
+
+.dark-toggle i {
+  transition: transform 0.3s ease;
+}
+
+.dark-toggle:hover i {
+  transform: rotate(20deg);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  .user-navbar {
+    padding: 15px 20px;
+  }
+  
+  .brand span {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  
+  .nav-right {
+    gap: 20px;
+  }
+  
+  .nav-link {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-navbar {
+    flex-wrap: wrap;
+    padding: 10px 15px;
+  }
+  
+  .logo {
+    height: 40px;
+  }
+  
+  .brand span {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  
+  .nav-right {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #d1b97e;
+  }
+  
+  .nav-link {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand span {
+    font-size: 14px;
+  }
+  
+  .nav-right {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .nav-link {
+    font-size: 12px;
+  }
+  
+  .cart-icon {
+    font-size: 18px;
+  }
+  
+  .profile-icon {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 375px) {
+  .user-navbar {
+    padding: 12px 12px;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    height: 35px;
+  }
+
+  .brand span {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .nav-left {
+    gap: 8px;
+    order: 1;
+  }
+
+  .nav-center {
+    order: 3;
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .search-container {
+    width: 100%;
+  }
+
+  .nav-right {
+    order: 2;
+    width: auto;
+    gap: 8px;
+  }
+
+  .nav-link {
+    font-size: 10px;
+  }
+
+  .cart-icon {
+    font-size: 16px;
+  }
+
+  .profile-icon {
+    font-size: 20px;
+  }
+
+  .dark-toggle-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 320px) {
+  .user-navbar {
+    padding: 10px 8px;
+  }
+
+  .logo {
+    height: 30px;
+  }
+
+  .brand span {
+    font-size: 11px;
+  }
+
+  .nav-link {
+    font-size: 9px;
+  }
+
+  .cart-icon {
+    font-size: 14px;
+  }
+
+  .profile-icon {
+    font-size: 18px;
+  }
+
+  .dark-toggle-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+}
+
+/* ===== DARK MODE STYLES ===== */
+body.dark-mode .user-navbar {
+  background-color: #1a1a1a;
+  border-bottom-color: #D4AF37;
+}
+
+body.dark-mode .nav-link,
+body.dark-mode .brand span,
+body.dark-mode .cart-icon,
+body.dark-mode .profile-icon,
+body.dark-mode .dark-toggle {
+  color: #f5e4c3;
+}
+
+body.dark-mode .nav-link:hover,
+body.dark-mode .cart-icon:hover,
+body.dark-mode .profile-icon:hover,
+body.dark-mode .dark-toggle:hover {
+  color: #D4AF37;
+}
+
+body.dark-mode .nav-link.active {
+  color: #D4AF37;
+}
+
+body.dark-mode .dropdown-menu {
+  background-color: #2a2a2a;
+  border-color: #444;
+}
+
+body.dark-mode .dropdown-item {
+  color: #f5e4c3;
+}
+
+body.dark-mode .dropdown-item:hover {
+  background-color: #3a3a3a;
+  color: #D4AF37;
+}/* Fix Navbar Alignment */
+.user-navbar .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Search Bar Container */
+.search-container {
+  position: relative;
+  width: 180px;
+  flex-shrink: 0;
+}
+
+/* Search Input */
+.search-input {
+  width: 100%;
+  padding: 6px 32px 6px 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.3s;
+}
+
+.search-input:focus {
+  border-color: #b69963;
+}
+
+/* Search Icon */
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 14px;
+}
+.search-dropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 999;
+}
+
+.search-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.search-item:hover {
+  background: #eee;
+}

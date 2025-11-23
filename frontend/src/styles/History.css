@@ -1,0 +1,65 @@
+/* ============= HISTORY PANEL ============= */
+
+.history-panel {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #081118;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 0 25px rgba(0, 195, 255, 0.15);
+  }
+  
+  /* Title */
+  .history-title {
+    text-align: center;
+    color: #8fe8ff;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 0 0 6px rgba(0, 200, 255, 0.6);
+  }
+  
+  /* Empty message */
+  .history-empty {
+    text-align: center;
+    color: #bcd2df;
+    font-size: 16px;
+    padding: 20px 0;
+  }
+  
+  /* ============= TABLE STYLE ============= */
+  
+  .history-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #0b1620;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 195, 255, 0.12);
+  }
+  
+  .history-table th,
+  .history-table td {
+    padding: 14px 16px;
+    text-align: center;
+    color: #d9e8f3;
+    font-size: 14px;
+  }
+  
+  .history-table th {
+    background: #11222f;
+    color: #79d8ff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  
+  .history-table tbody tr:nth-child(even) {
+    background: #0f1c29;
+  }
+  
+  .history-table tbody tr:hover {
+    background: #143144;
+    transition: 0.2s ease;
+  }
+  

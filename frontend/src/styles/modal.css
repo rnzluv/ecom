@@ -1,0 +1,44 @@
+/* Simple modal styles used by ConfirmModal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+}
+
+.modal-card {
+  background: var(--bg, #fff);
+  color: var(--fg, #111);
+  padding: 1.25rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+}
+
+.modal-card h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.modal-card p {
+  margin: 0 0 1rem 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.modal-actions .btn {
+  padding: 0.5rem 0.75rem;
+}
+
+.modal-actions .btn-danger {
+  background: var(--danger, #c0392b);
+  color: #fff;
+  border: none;
+}

@@ -1,0 +1,121 @@
+.admin-nav {
+    width: 100%;
+    height: 70px;
+    background: #fff9ef;
+    border-bottom: 2px solid #d6c29b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .history-img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+  }
+  
+  .admin-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .admin-logo {
+    height: 45px;
+  }
+  
+  .admin-brand {
+    font-size: 20px;
+    font-weight: bold;
+    color: #a57c33;
+    letter-spacing: 1px;
+  }
+  
+  .admin-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .admin-link {
+    color: #704d16;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+  }
+  
+  .admin-link:hover {
+    color: #b38949;
+  }
+  
+  .admin-logout {
+    background: #b38949;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .admin-logout:hover {
+    background: #916c35;
+  }
+  .admin-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f5f0e5;
+    padding: 12px 24px;
+    border-bottom: 2px solid #d8cbb8;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  .admin-navbar-left .admin-title {
+    font-family: Georgia, serif;
+    font-weight: 800;
+    color: #3a3022;
+    font-size: 18px;
+  }
+  
+  .admin-navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .admin-nav-link {
+    text-decoration: none;
+    color: #3a3022;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: 0.2s;
+  }
+  
+  .admin-nav-link:hover {
+    background-color: #c49a5780;
+    color: white;
+  }
+  
+  .admin-logout-btn {
+    background-color: #e05b5b;
+    color: white;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .admin-logout-btn:hover {
+    background-color: #c04444;
+  }
+  
