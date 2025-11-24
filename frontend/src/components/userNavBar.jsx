@@ -6,7 +6,6 @@ import "../styles/UserNavbar.css";
 export default function UserNavbar() {
   const [cartCount, setCartCount] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
-
   const [query, setQuery] = useState("");
   const [allProducts, setAllProducts] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
@@ -18,23 +17,38 @@ export default function UserNavbar() {
 
   const isActive = (path) => location.pathname === path;
 
-  // Load cart count
-  useEffect(() => {
-    if (!token) return;
-
-    axios
-      .get("/api/cart/me", { headers: { Authorization: `Bearer ${token}` } })
+  // Function to fetch cart count
+  const fetchCartCount = () => {
+    if (!token) {
+      setCartCount(0);
+      return;
+    }
+    axios.get("/api/cart/me", { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
         const items = res.data.items || [];
         setCartCount(items.reduce((sum, item) => sum + item.quantity, 0));
       })
       .catch(() => setCartCount(0));
-  }, [location]);
+  };
 
-  // Load products for search autocomplete
+  // Load cart count on mount and location change
   useEffect(() => {
-    axios
-      .get("/api/products")
+    fetchCartCount();
+  }, [location, token]);
+
+  // Listen for cart updates from Cart.js
+  useEffect(() => {
+    const handleCartUpdate = () => {
+      fetchCartCount();
+    };
+
+    window.addEventListener('cartUpdated', handleCartUpdate);
+    return () => window.removeEventListener('cartUpdated', handleCartUpdate);
+  }, [token]);
+
+  // Load products for autocomplete
+  useEffect(() => {
+    axios.get("/api/products")
       .then((res) => {
         const data = res.data;
         if (Array.isArray(data)) setAllProducts(data);
@@ -44,20 +58,17 @@ export default function UserNavbar() {
       .catch(() => setAllProducts([]));
   }, []);
 
-  // Search live suggestions
+  // Search suggestions
   const handleSearch = (value) => {
     setQuery(value);
-
     if (!value.trim()) return setSuggestions([]);
-
     const filtered = allProducts.filter((p) =>
       p.name.toLowerCase().includes(value.toLowerCase())
     );
-
     setSuggestions(filtered.slice(0, 5));
   };
 
-  // Dark mode
+  // Dark mode toggle
   useEffect(() => {
     if (localStorage.getItem("darkMode") === "enabled") {
       setDarkMode(true);
@@ -68,7 +79,6 @@ export default function UserNavbar() {
   const toggleDark = () => {
     const enabled = !darkMode;
     setDarkMode(enabled);
-
     document.body.classList.toggle("dark-mode", enabled);
     localStorage.setItem("darkMode", enabled ? "enabled" : "disabled");
   };
@@ -76,6 +86,7 @@ export default function UserNavbar() {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    setCartCount(0); // Reset cart count on logout
     navigate("/user/login");
   };
 
@@ -103,24 +114,17 @@ export default function UserNavbar() {
             value={query}
             onChange={(e) => handleSearch(e.target.value)}
           />
-
-          <i
-            className="fas fa-search search-icon"
-            onClick={() => navigate(`/shop?search=${query}`)}
-          ></i>
+          <i className="fas fa-search search-icon" onClick={() => navigate(`/shop?search=${query}`)}></i>
 
           {suggestions.length > 0 && (
             <ul className="search-dropdown">
               {suggestions.map((item) => (
-                <li
-                  key={item._id}
-                  className="search-item"
+                <li key={item._id} className="search-item"
                   onClick={() => {
                     setQuery(item.name);
                     setSuggestions([]);
                     navigate(`/shop?search=${item.name}`);
-                  }}
-                >
+                  }}>
                   {item.name}
                 </li>
               ))}
@@ -145,10 +149,10 @@ export default function UserNavbar() {
             </ul>
           </div>
         ) : (
-          <Link to="/login" className="nav-link">Login</Link>
+          <Link to="/user/login" className="nav-link">Login</Link>
         )}
 
-        {/* Dark mode */}
+        {/* Dark Mode Toggle */}
         <div className="dark-toggle" onClick={toggleDark}>
           <i className={darkMode ? "fas fa-moon" : "far fa-moon"}></i>
         </div>

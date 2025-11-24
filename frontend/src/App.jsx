@@ -1,7 +1,9 @@
+// Cleaned and fixed App.js with proper structure and routing
 import React from "react";
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { ToastProvider } from './components/ToastProvider.jsx';
-// USER PAGES
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { ToastProvider } from "./components/ToastProvider.jsx";
+
+// User Pages
 import LoginPage from "./pages/User/LoginPage.jsx";
 import LandingPage from "./pages/User/LandingPage.jsx";
 import RegisterPage from "./pages/User/RegisterPage.jsx";
@@ -14,29 +16,164 @@ import Success from "./pages/User/success.jsx";
 import Wishlist from "./pages/User/Wishlist.jsx";
 import AboutUs from "./pages/User/aboutus.jsx";
 import ProductDetail from "./pages/User/ProductDetail.jsx";
-// ADMIN PAGES
+
+// Admin Pages
 import AddProductPage from "./pages/Admin/AddProductPage.jsx";
 import DashboardPage from "./pages/Admin/DashboardPage.jsx";
 import ProductHistory from "./pages/Admin/ProductHistory.jsx";
 import ProductsPage from "./pages/Admin/ProductsPage.jsx";
-import PurchaseHistory from "./pages/Admin/PurchaseHistory.jsx";
-import UserCreatedHistory from "./pages/Admin/UserCreatedHistory.jsx";
-// LAYOUTS
+
+// Layouts
 import UserLayout from "./components/UserLayout.jsx";
-// ...existing code...
 
 function App() {
   return (
     <ToastProvider>
       <BrowserRouter>
-        <Layout />
+        <Routes>
+          {/* Public Landing */}
+          <Route path="/" element={<LandingPage />} />
+
+          {/* Auth Routes */}
+          <Route path="/user/login" element={<LoginPage />} />
+          <Route path="/user/register" element={<RegisterPage />} />
+          <Route path="/user/forgot-password" element={<ForgotPasswordPage />} />
+
+          {/* User Routes */}
+          <Route
+            path="/home"
+            element={
+              <UserRoute>
+                <UserLayout>
+                  <HomePage />
+                </UserLayout>
+              </UserRoute>
+            }
+          />
+
+          <Route
+            path="/shop"
+            element={
+              <UserRoute>
+                <UserLayout>
+                  <ShopPage />
+                </UserLayout>
+              </UserRoute>
+            }
+          />
+
+          <Route
+            path="/cart"
+            element={
+              <UserRoute>
+                <UserLayout>
+                  <Cart />
+                </UserLayout>
+              </UserRoute>
+            }
+          />
+
+          <Route
+            path="/checkout"
+            element={
+              <UserRoute>
+                <UserLayout>
+                  <Checkout />
+                </UserLayout>
+              </UserRoute>
+            }
+          />
+
+          <Route
+            path="/success"
+            element={
+              <UserRoute>
+                <UserLayout>
+                  <Success />
+                </UserLayout>
+              </UserRoute>
+            }
+          />
+
+          <Route
+            path="/wishlist"
+            element={
+              <UserRoute>
+                <UserLayout>
+                  <Wishlist />
+                </UserLayout>
+              </UserRoute>
+            }
+          />
+
+          <Route
+            path="/about"
+            element={
+              <UserRoute>
+                <UserLayout>
+                  <AboutUs />
+                </UserLayout>
+              </UserRoute>
+            }
+          />
+
+          <Route
+            path="/product/:id"
+            element={
+              <UserRoute>
+                <UserLayout>
+                  <ProductDetail />
+                </UserLayout>
+              </UserRoute>
+            }
+          />
+
+          {/* Admin Routes */}
+          <Route
+            path="/admin/dashboard"
+            element={
+              <AdminRoute>
+                <DashboardPage />
+              </AdminRoute>
+            }
+          />
+
+          <Route
+            path="/admin/products"
+            element={
+              <AdminRoute>
+                <ProductsPage />
+              </AdminRoute>
+            }
+          />
+
+          <Route
+            path="/admin/products/add"
+            element={
+              <AdminRoute>
+                <AddProductPage />
+              </AdminRoute>
+            }
+          />
+
+          <Route
+            path="/admin/products/history"
+            element={
+              <AdminRoute>
+                <ProductHistory />
+              </AdminRoute>
+            }
+          />
+
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </BrowserRouter>
     </ToastProvider>
   );
 }
 
-export default App;
-// Helper to read logged in user
+// Helper to read user from localStorage safely
 function getUser() {
   try {
     const data = JSON.parse(localStorage.getItem("user"));
@@ -45,33 +182,21 @@ function getUser() {
     return null;
   }
 }
-// USER ROUTE PROTECTOR
+
+// Protect User Routes
 function UserRoute({ children }) {
   const user = getUser();
   if (!user) return <Navigate to="/user/login" replace />;
-  if (user.role === "admin") {
-    return <Navigate to="/admin/dashboard" replace />;
-  }
+  if (user.role === "admin") return <Navigate to="/admin/dashboard" replace />;
   return children;
 }
-// ADMIN ROUTE PROTECTOR
+
+// Protect Admin Routes
 function AdminRoute({ children }) {
   const user = getUser();
   if (!user) return <Navigate to="/user/login" replace />;
-  if (user.role !== "admin") {
-    return <Navigate to="/home" replace />;
-  }
+  if (user.role !== "admin") return <Navigate to="/home" replace />;
   return children;
 }
-// MAIN LAYOUT
-function Layout() {
-  return (
-    <Routes>
-      {/* PUBLIC LANDING */}
-      <Route path="/" element={<LandingPage />} />
-      {/* LOGIN / REGISTER */}
-      {/* ...existing code... */}
-    </Routes>
-  );
-}
-// ...existing code...
+
+export default App;
